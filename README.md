@@ -1,6 +1,6 @@
 <div align="center">
 
-# DDEV Openapi Mock
+# DDEV OpenAPI Mock
 
 [![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
 [![tests](https://github.com/jackd248/ddev-openapi-mock/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/jackd248/ddev-openapi-mock/actions/workflows/tests.yml?query=branch%3Amain)
