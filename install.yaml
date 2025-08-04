@@ -1,6 +1,10 @@
 name: openapi-mock
 
 project_files:
+  - openapi/openapi.json
   - docker-compose.openapi-mock.yaml
 
 ddev_version_constraint: '>= v1.24.3'
+
+removal_actions:
+  - rm -rf ${DDEV_APPROOT}/.ddev/openapi

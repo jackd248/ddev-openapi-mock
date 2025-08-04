@@ -1,16 +1,21 @@
 #ddev-generated
-# Simple template to demonstrate openapi-mock
 services:
   openapi-mock:
     container_name: ddev-${DDEV_SITENAME}-openapi-mock
-    image: ${OPENAPI_MOCK_DOCKER_IMAGE:-busybox:stable}
-    command: tail -f /dev/null
-    restart: "no"
-    # These labels ensure this service is discoverable by DDEV.
+    image: ${OPENAPI_MOCK_DOCKER_IMAGE:-muonsoft/openapi-mock:latest}
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
       com.ddev.approot: ${DDEV_APPROOT}
-
     volumes:
       - ".:/mnt/ddev_config"
       - "ddev-global-cache:/mnt/ddev-global-cache"
+      - ./openapi:/data
+    expose:
+      - ${OPENAPI_MOCK_PORT:-8080}
+    environment:
+      - OPENAPI_MOCK_SPECIFICATION_URL=${OPENAPI_MOCK_SPECIFICATION:-https://raw.githubusercontent.com/muonsoft/openapi-mock/refs/heads/master/examples/petstore.yaml}
+      - OPENAPI_MOCK_USE_EXAMPLES=${OPENAPI_MOCK_USE_EXAMPLES:-if_present}
+      - OPENAPI_MOCK_CORS_ENABLED=${OPENAPI_MOCK_CORS_ENABLED:-true}
+      - VIRTUAL_HOST=$DDEV_HOSTNAME
+      - HTTP_EXPOSE=8079:${OPENAPI_MOCK_PORT:-8080}
+      - HTTPS_EXPOSE=8080:${OPENAPI_MOCK_PORT:-8080}
