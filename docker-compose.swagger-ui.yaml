@@ -1,0 +1,19 @@
+#ddev-generated
+services:
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: ddev-${DDEV_PROJECT}-swagger-ui
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: ${DDEV_APPROOT}
+    volumes:
+      - ".:/mnt/ddev_config"
+      - "ddev-global-cache:/mnt/ddev-global-cache"
+      - ./openapi:/data
+    expose:
+      - ${OPENAPI_SWAGGER_PORT:-8081}
+    environment:
+      - SWAGGER_JSON=${OPENAPI_SWAGGER_SPECIFICATION:-https://raw.githubusercontent.com/muonsoft/openapi-mock/refs/heads/master/examples/petstore.yaml}
+      - VIRTUAL_HOST=$DDEV_HOSTNAME
+      - HTTP_EXPOSE=${OPENAPI_MOCK_PORT:-8081}:8079
+      - HTTPS_EXPOSE=${OPENAPI_MOCK_PORT:-8081}:8080

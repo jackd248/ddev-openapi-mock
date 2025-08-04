@@ -1,8 +1,9 @@
 name: openapi-mock
 
 project_files:
-  - openapi/openapi.json
+  - openapi/.gitkeep
   - docker-compose.openapi-mock.yaml
+  - docker-compose.swagger-ui.yaml
 
 ddev_version_constraint: '>= v1.24.3'
 
